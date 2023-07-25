@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+$soft-blue: hsl(215, 51%, 70%);
+$cyan: hsl(178, 100%, 50%);
+$cyan-back: hsla(178, 100%, 50%, .7);
+$white: hsl(0, 0%, 100%);
+$very-dark-blue-main-bg: hsl(217, 54%, 11%);
+$soo-dark-blue-bg: hsl(215, 55%, 8%);
+$very-dark-blue-card-bg: hsl(216, 50%, 16%);
+$very-dark-blue-line: hsl(215, 32%, 27%);
+$color-in-card: hsl(213, 31%, 65%);
+$transition-color: color .2s linear;
+  
+  
+:root {
+  font-size: 18px;
+  font-family: 'Outfit', sans-serif;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  min-width: 375px;
+  min-height: 100vh;
+  background-color: $very-dark-blue-main-bg;
+  color: $white;
+
+  footer {
+    position: absolute;
+    bottom: 1rem;
+    width: 100%;
+    z-index: 0;
+
+    p {
+      text-align: center;
+    }
+
+    a {
+      color: $soft-blue;
+    }
+  }
+
+  main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+
+.card {
+  max-width: 400px;
+  margin: 1.5rem;
+  position: relative;
+  z-index: 1;
+  padding: 1.5rem;
+  background-color: $very-dark-blue-card-bg;
+  border-radius: 1rem;
+  font-size: .625rem;
+  box-shadow: .2rem 1.5rem 1.5rem .5rem $soo-dark-blue-bg;
+
+  .card__image {
+    height: max-content;
+    position: relative;
+    cursor: pointer;
+
+    .hovered-image {
+      position: absolute;
+      left: 45%;
+      opacity: 0;
+      width: 3rem;
+      transition: transform .2s linear, opacity .2s linear;
+    }
+
+    &::after {
+      content: ' ';
+      display: block;
+      height: 0%;
+      width: 100%;
+      margin: 0 auto;
+      top: 0;
+      transition: height .3s linear, background-color .3s linear;
+    }
+
+    &:hover{
+      &::after {
+        position: absolute;
+        border-radius: .5rem;
+        height: 100%;
+        z-index: 0;
+        background-color: $cyan-back;
+      }
+
+      .hovered-image {
+        opacity: 1;
+        z-index: 1;
+        transform: translateY(8rem);
+      }
+    }
+  }
+
+  .card__image > img{
+    border-radius: .5rem;
+  }
+
+  // rules for card description -- start
+  .card__description > p {
+    font-size: 1.325em;
+    font-weight: 300;
+    color: $color-in-card;
+  }
+
+  .card__description > h1 {
+    transition: $transition-color;
+    cursor: pointer;
+
+    &:hover {
+      color: $cyan;
+    }
+  }
+
+  .price-and-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.325em;
+    margin-bottom: 1em;
+  }
+
+  .price, .time {
+    display: flex;
+    line-height: 1em;
+    align-items: flex-end;
+    
+    img {
+      margin-right: .5em;
+    }
+  }
+
+  .price {
+    left: 0;
+    color: $cyan;
+
+    img {
+      width: .625em;
+    }
+  }
+
+  .time {
+    right: 0;
+    color: $color-in-card;
+    
+    img {
+      width: 1em;
+    }
+  }
+  // rules for card description -- end 
+
+  .card__signature {
+    margin-top: 1em;
+    padding-top: 1em;
+    border-top: 1px solid $very-dark-blue-line;
+    display: flex;
+    align-items: center;
+    font-size: 1.325em;
+
+    .avatar {
+      height: min-content;
+      line-height: 1;
+    }
+
+    .avatar > img {
+      width: 2.5em;
+      border-radius: 100%;
+      border: 1px solid $white;
+    }
+
+    > * + * {
+      padding-left: 1em;
+    }
+
+    .creator {
+      color: $color-in-card;
+    }
+
+    .creator__name {
+      color: $white;
+      cursor: pointer;
+      transition: $transition-color;
+
+      &:hover {
+        color: $cyan;
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .card {
+    font-size: .8rem;
+
+    .card__signature {
+      .avatar {
+        height: min-content;
+        line-height: 1;
+      }
+  
+      .avatar > img {
+        width: 1.7em;
+        border-radius: 100%;
+        border: 1px solid $white;
+      }
+  
+      > * + * {
+        padding-left: 1em;
+      }
+  
+      .creator {
+        color: $color-in-card;
+      }
+  
+      .creator__name {
+        color: $white;
+      }
+    }
+  }
+}
